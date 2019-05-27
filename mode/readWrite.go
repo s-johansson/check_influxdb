@@ -68,21 +68,21 @@ FROM "httpd" where time > now() - %dm;`,
 		states = append(states, state)
 		switch i {
 		case 0:
-			typ := "read_data"
+			typ := "read_data_B/s"
 			toPrint.WriteString(fmt.Sprintf("%s: %sps ", typ, Units.ByteSize(v)))
-			check_x.NewPerformanceData(typ, v).Unit("Bps").Warn(w).Crit(c)
+			check_x.NewPerformanceData(typ, v).Unit("B").Warn(w).Crit(c)
 		case 1:
-			typ := "read_ops"
+			typ := "read_ops/s"
 			toPrint.WriteString(fmt.Sprintf("%s: %0.3fops ", typ, v))
-			check_x.NewPerformanceData(typ, v).Unit("ops").Warn(w).Crit(c)
+			check_x.NewPerformanceData(typ, v).Unit("").Warn(w).Crit(c)
 		case 2:
-			typ := "write_data"
+			typ := "write_data_B/s"
 			toPrint.WriteString(fmt.Sprintf("%s: %sps ", typ, Units.ByteSize(v)))
-			check_x.NewPerformanceData(typ, v).Unit("Bps").Warn(w).Crit(c)
+			check_x.NewPerformanceData(typ, v).Unit("B").Warn(w).Crit(c)
 		case 3:
-			typ := "write_ops"
+			typ := "write_ops/s"
 			toPrint.WriteString(fmt.Sprintf("%s: %0.3fops ", typ, v))
-			check_x.NewPerformanceData(typ, v).Unit("ops").Warn(w).Crit(c)
+			check_x.NewPerformanceData(typ, v).Unit("").Warn(w).Crit(c)
 		}
 	}
 
